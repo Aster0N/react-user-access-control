@@ -1,7 +1,21 @@
-import "./App.css"
+import { BrowserRouter } from 'react-router-dom'
+
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+
+import './App.css'
+import AppRouter from './AppRouter'
 
 function App() {
-  return <>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, sit.</>;
+  return (
+    <BrowserRouter>
+      <Header />
+      <main>
+        <AppRouter />
+      </main>
+      <Footer />
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
