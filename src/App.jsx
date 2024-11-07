@@ -9,11 +9,15 @@ import AppRouter from './AppRouter'
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <main>
-        <AppRouter />
-      </main>
-      <Footer />
+      <div className='flex flex-col min-h-full'>
+        <Header />
+        <main className='flex-auto'>
+          <div className='min-h-auto'>
+            <AppRouter />
+          </div>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }
