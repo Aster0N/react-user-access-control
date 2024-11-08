@@ -1,13 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import LinkCard from '../components/UI/LinkCard'
 
 const Homepage = () => {
+  const links = [
+    { path: '/users', content: 'Users' },
+    { path: '/gallery', content: 'Gallery' },
+    { path: '/todos', content: 'Todos' },
+  ]
+
   return (
     <div>
-      <section>
-        <Link to='/posts'>posts</Link>
-        <Link to='/photos'>photos</Link>
-        <Link to='/todos'>todos</Link>
+      <section className='flex place-content-center place-items-center gap-20 pt-44'>
+        {links.map((link) => (
+          <LinkCard
+            key={link.path}
+            path={link.path}
+            content={link.content}
+          />
+        ))}
       </section>
     </div>
   )
