@@ -5,7 +5,7 @@ const LinkCard = ({ path, content }) => {
     <div
       className='
 			h-[250px] w-[250px] rounded-xl border-dashed border-2 transition-all
-		 	ease-in-out duration-300 hover:-translate-y-6 hover:bg-zinc-800'
+		 	ease-in-out duration-300 hover:-translate-y-6 hover:bg-zinc-800 hover:shadow-xl hover:shadow-[#363044]'
     >
       <Link
         className='w-full h-full text-white flex place-content-center place-items-center text-lg'
