@@ -1,10 +1,11 @@
-import LinkCard from '../components/UI/LinkCard'
+import LinkCard from '@/components/UI/LinkCard'
+import { GALLERY_PATH, TODOS_PATH, USERS_PATH } from '@/router/routes.js'
 
 const Homepage = () => {
   const links = [
-    { path: '/users', content: 'Users' },
-    { path: '/gallery', content: 'Gallery' },
-    { path: '/todos', content: 'Todos' },
+    { path: USERS_PATH, content: 'Users' },
+    { path: GALLERY_PATH, content: 'Gallery' },
+    { path: TODOS_PATH, content: 'Todos' },
   ]
 
   return (

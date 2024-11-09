@@ -1,0 +1,5 @@
+export const MAIN_PATH = '/'
+export const PROFILE_PATH = '/profile'
+export const USERS_PATH = '/users'
+export const GALLERY_PATH = '/gallery'
+export const TODOS_PATH = '/todos'
