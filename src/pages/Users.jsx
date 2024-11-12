@@ -15,16 +15,19 @@ const Users = () => {
     users: {
       getURL: USERS_URL,
       setData: setUsersData,
+      data: usersData,
       element: () => <UsersContent usersData={usersData} />,
     },
     posts: {
       getURL: POSTS_URL,
       setData: setPostsData,
+      data: postsData,
       element: () => <PostsContent postsData={postsData} />,
     },
     comments: {
       getURL: COMMENTS_URL,
       setData: setCommentsData,
+      data: commentsData,
       element: () => <CommentsContent commentsData={commentsData} />,
     },
   }
@@ -35,14 +38,17 @@ const Users = () => {
       let response = await fetch(tabData.getURL).then((response) => response.json())
       let currData = response.length > 10 ? response.splice(0, 9) : response
       tabData.setData(currData)
+      console.log(currData)
     } catch (e) {
       console.log(e)
     }
   }
 
   useEffect(() => {
+    console.log(activeTabIndex)
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
+      if (currentTabData.data) return
       handleTabChange(currentTabData)
     }
   }, [activeTabIndex])
@@ -56,7 +62,16 @@ const Users = () => {
           activeTabIndex={activeTabIndex}
           setActiveTabIndex={setActiveTabIndex}
         />
-        <div>{tabData[tabs[activeTabIndex]]?.element()}</div>
+        <div>
+          {activeTabIndex !== null ? (
+            tabData[tabs[activeTabIndex]]?.element()
+          ) : (
+            <div className='pt-5'>
+              <span className='text-orange-500'>⚠</span>&nbsp;
+              <span className='text-orange-300'>select tab to watch data</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

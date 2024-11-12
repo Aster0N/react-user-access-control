@@ -10,7 +10,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <section className='flex place-content-center place-items-center gap-20 pt-44'>
+      <section className='flex place-content-center place-items-center gap-20 pt-20'>
         {links.map((link) => (
           <LinkCard
             key={link.path}

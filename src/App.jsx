@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Header />
-        <main className='flex-auto w-[1024px] mx-auto'>
+        <main className='flex-auto w-[70vw] mx-auto'>
           <AppRouter />
         </main>
         <Footer />
