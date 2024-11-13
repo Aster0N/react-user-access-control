@@ -1,22 +1,11 @@
+import { userRouteByRole } from '@/consts/userRouteByRole'
 import AuthContext from '@/context/AuthContext'
-import {
-  adminRoutes,
-  galleryManagerRoutes,
-  todosManagerRoutes,
-  unauthRouts,
-  userManagerRoutes,
-} from '@/router/index.js'
+import { unauthRouts } from '@/router/index.js'
 import { useContext } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 const AppRouter = () => {
   const { user, isAuth } = useContext(AuthContext)
-  const userRouteByRole = {
-    admin: adminRoutes,
-    'user-manager': userManagerRoutes,
-    'gallery-manager': galleryManagerRoutes,
-    'todos-manager': todosManagerRoutes,
-  }
 
   return isAuth ? (
     <Routes>
