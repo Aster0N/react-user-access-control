@@ -1,10 +1,10 @@
 import { ALBUMS_URL, PHOTOS_URL } from '@/api/api.js'
 import AlbumsContent from '@/components/AlbumsContent'
 import PhotosContent from '@/components/PhotosContent'
+import RandomPhoto from '@/components/RandomPhoto'
 import TabContentWarning from '@/components/UI/TabContentWarning'
 import Tabs from '@/components/UI/Tabs'
 import { useEffect, useState } from 'react'
-import RandomPhoto from '../components/RandomPhoto'
 
 const Gallery = () => {
   const [photosData, setPhotosData] = useState(null)
