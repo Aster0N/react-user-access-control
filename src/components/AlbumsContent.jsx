@@ -6,7 +6,7 @@ const AlbumsContent = ({ albumsData }) => {
           albumsData.map((album) => (
             <div
               key={album.id}
-              className='w-[120px] inline-block border-[1px] rounded-lg border-solid border-gray-400 p-2'
+              className='w-[150px] inline-block border-[1px] rounded-lg border-solid border-gray-400 p-2'
             >
               <h2>{album.id}.</h2>
               <span>{album.title}</span>

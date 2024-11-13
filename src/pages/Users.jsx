@@ -37,8 +37,7 @@ const Users = () => {
   const handleTabChange = async (tabData) => {
     try {
       let response = await fetch(tabData.getURL).then((response) => response.json())
-      let currData = response.length > 10 ? response.splice(0, 9) : response
-      tabData.setData(currData)
+      tabData.setData(response)
     } catch (e) {
       console.log(e)
     }

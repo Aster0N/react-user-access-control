@@ -4,6 +4,7 @@ import PhotosContent from '@/components/PhotosContent'
 import TabContentWarning from '@/components/UI/TabContentWarning'
 import Tabs from '@/components/UI/Tabs'
 import { useEffect, useState } from 'react'
+import RandomPhoto from '../components/RandomPhoto'
 
 const Gallery = () => {
   const [photosData, setPhotosData] = useState(null)
@@ -23,14 +24,16 @@ const Gallery = () => {
       data: albumsData,
       element: () => <AlbumsContent albumsData={albumsData} />,
     },
+    'random photo': {
+      element: () => <RandomPhoto />,
+    },
   }
   const tabs = Object.keys(tabData)
 
   const handleTabChange = async (tabData) => {
     try {
       let response = await fetch(tabData.getURL).then((response) => response.json())
-      let currData = response.length > 10 ? response.splice(0, 9) : response
-      tabData.setData(currData)
+      tabData.setData(response)
     } catch (e) {
       console.log(e)
     }
@@ -39,7 +42,7 @@ const Gallery = () => {
   useEffect(() => {
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
-      if (currentTabData.data) return
+      if (currentTabData.data || tabs[activeTabIndex] == 'random photo') return
       handleTabChange(currentTabData)
     }
   }, [activeTabIndex])
