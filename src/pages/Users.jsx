@@ -1,6 +1,7 @@
 import { COMMENTS_URL, POSTS_URL, USERS_URL } from '@/api/api.js'
 import CommentsContent from '@/components/CommentsContent'
 import PostsContent from '@/components/PostsContent'
+import TabContentWarning from '@/components/UI/TabContentWarning'
 import Tabs from '@/components/UI/Tabs'
 import UsersContent from '@/components/UsersContent'
 import { useEffect, useState } from 'react'
@@ -38,14 +39,12 @@ const Users = () => {
       let response = await fetch(tabData.getURL).then((response) => response.json())
       let currData = response.length > 10 ? response.splice(0, 9) : response
       tabData.setData(currData)
-      console.log(currData)
     } catch (e) {
       console.log(e)
     }
   }
 
   useEffect(() => {
-    console.log(activeTabIndex)
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
       if (currentTabData.data) return
@@ -66,10 +65,7 @@ const Users = () => {
           {activeTabIndex !== null ? (
             tabData[tabs[activeTabIndex]]?.element()
           ) : (
-            <div className='pt-5'>
-              <span className='text-orange-500'>⚠</span>&nbsp;
-              <span className='text-orange-300'>select tab to watch data</span>
-            </div>
+            <TabContentWarning />
           )}
         </div>
       </div>
