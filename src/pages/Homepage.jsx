@@ -1,20 +1,9 @@
 import LinkCard from '@/components/UI/LinkCard'
-import { userRouteByRole } from '@/consts/userRouteByRole'
-import AuthContext from '@/context/AuthContext'
-import { GALLERY_PATH, TODOS_PATH, USERS_PATH } from '@/router/routes.js'
-import { useContext } from 'react'
+import { availableSectionLinks } from '@/consts/availableSectionLinks'
+import { getUserLinksByRole } from '@/utils/getUserLinksByRole'
 
 const Homepage = () => {
-  const { user } = useContext(AuthContext)
-  const links = [
-    { path: USERS_PATH, content: 'Users' },
-    { path: GALLERY_PATH, content: 'Gallery' },
-    { path: TODOS_PATH, content: 'Todos' },
-  ]
-  const userLinks = userRouteByRole[user.role]
-  const userAccessibleLinks = links.filter((link) =>
-    userLinks.some((route) => route.path === link.path),
-  )
+  const userAccessibleLinks = getUserLinksByRole(availableSectionLinks)
 
   return (
     <div>
@@ -23,7 +12,7 @@ const Homepage = () => {
           <LinkCard
             key={link.path}
             path={link.path}
-            content={link.content}
+            content={link.placeholder}
           />
         ))}
       </section>
