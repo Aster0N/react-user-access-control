@@ -1,4 +1,4 @@
-import { COMMENTS_URL, POSTS_URL, USERS_URL } from '@/api/api.js'
+import { COMMENTS_URL, POSTS_URL, USERS_DATA_URL } from '@/api/api.js'
 import CommentsContent from '@/components/CommentsContent'
 import PostsContent from '@/components/PostsContent'
 import TabContentWarning from '@/components/UI/TabContentWarning'
@@ -14,7 +14,7 @@ const Users = () => {
 
   const tabData = {
     users: {
-      getURL: USERS_URL,
+      getURL: USERS_DATA_URL,
       setData: setUsersData,
       data: usersData,
       element: () => <UsersContent usersData={usersData} />,
