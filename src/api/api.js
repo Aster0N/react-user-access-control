@@ -6,7 +6,7 @@
 
 // smth wrong with jsonplaceholder connection => download json locally
 
-export const USERS_DATA_URL = '/userData.json'
+export const USERS_DATA_URL = '/users.json'
 export const POSTS_URL = '/posts.json'
 export const COMMENTS_URL = '/comments.json'
 export const PHOTOS_URL = '/photos.json'
