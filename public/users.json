@@ -1,18 +1,22 @@
 [
   {
     "name": "Boss",
-    "role": "admin"
+    "role": ["admin"]
   },
   {
     "name": "Jhon",
-    "role": "user-manager"
+    "role": ["user-manager"]
   },
   {
     "name": "Mathew",
-    "role": "gallery-manager"
+    "role": ["gallery-manager"]
   },
   {
     "name": "Charlie",
-    "role": "todos-manager"
+    "role": ["todos-manager"]
+  },
+  {
+    "name": "multi",
+    "role": ["user-manager", "gallery-manager"]
   }
 ]

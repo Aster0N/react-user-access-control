@@ -1,9 +1,10 @@
-import React from 'react'
+import AuthContext from '@/context/AuthContext'
+import { useContext } from 'react'
 
 const UserProfile = () => {
-	return (
-		<div>Hello, user</div>
-	)
+  const { user } = useContext(AuthContext)
+
+  return <h1 className='pt-20'>Hello, {user.name}</h1>
 }
 
 export default UserProfile

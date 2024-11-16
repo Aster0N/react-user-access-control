@@ -1,15 +1,16 @@
-import { userRouteByRole } from '@/consts/userRouteByRole'
 import AuthContext from '@/context/AuthContext'
 import { unauthRouts } from '@/router/index.js'
 import { useContext } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { getUserLinksByRole } from './utils/getUserLinksByRole'
 
 const AppRouter = () => {
-  const { user, isAuth } = useContext(AuthContext)
+  const { isAuth } = useContext(AuthContext)
+  const allUserRoutes = getUserLinksByRole(false)
 
   return isAuth ? (
     <Routes>
-      {userRouteByRole[user.role].map((route) => (
+      {allUserRoutes.map((route) => (
         <Route
           key={route.path}
           path={route.path}

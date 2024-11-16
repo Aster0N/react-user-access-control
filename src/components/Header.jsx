@@ -1,11 +1,10 @@
-import { availableSectionLinks } from '@/consts/availableSectionLinks'
 import { MAIN_PATH, PROFILE_PATH } from '@/router/routes'
 import { getUserLinksByRole } from '@/utils/getUserLinksByRole'
 
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-  const userAccessibleLinks = getUserLinksByRole(availableSectionLinks)
+  const userAccessibleLinks = getUserLinksByRole()
 
   return (
     <div className='w-full h-[100px] flex place-content-center place-items-center bg-gray-900'>

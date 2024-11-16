@@ -5,8 +5,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(true)
   const [roles, setRoles] = useState(['admin', 'user-manager', 'gallery-manager', 'todos-manager'])
   const [user, setUser] = useState({
-    "name": "Boss",
-    "role": "admin"
+    "name": "multi",
+    "role": ["user-manager", "gallery-manager"]
   })
 
   return (

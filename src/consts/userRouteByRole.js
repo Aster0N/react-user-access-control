@@ -1,8 +1,8 @@
 import {
-  adminRoutes,
-  galleryManagerRoutes,
-  todosManagerRoutes,
-  userManagerRoutes,
+	adminRoutes,
+	galleryManagerRoutes,
+	todosManagerRoutes,
+	userManagerRoutes,
 } from '@/router/index.js'
 
 export const userRouteByRole = {

@@ -1,9 +1,8 @@
 import LinkCard from '@/components/UI/LinkCard'
-import { availableSectionLinks } from '@/consts/availableSectionLinks'
 import { getUserLinksByRole } from '@/utils/getUserLinksByRole'
 
 const Homepage = () => {
-  const userAccessibleLinks = getUserLinksByRole(availableSectionLinks)
+  const userAccessibleLinks = getUserLinksByRole()
 
   return (
     <div>
