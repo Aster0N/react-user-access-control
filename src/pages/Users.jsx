@@ -46,7 +46,6 @@ const Users = () => {
   useEffect(() => {
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
-      if (currentTabData.data) return
       handleTabChange(currentTabData)
     }
   }, [activeTabIndex])

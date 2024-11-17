@@ -1,6 +1,4 @@
-import { memo } from 'react'
-
-const PostsContent = memo(({ postsData }) => {
+const PostsContent = ({ postsData }) => {
   return (
     <div className='pt-2'>
       {postsData &&
@@ -18,6 +16,6 @@ const PostsContent = memo(({ postsData }) => {
         ))}
     </div>
   )
-})
+}
 
 export default PostsContent

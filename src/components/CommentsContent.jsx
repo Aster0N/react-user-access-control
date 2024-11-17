@@ -1,6 +1,4 @@
-import { memo } from 'react'
-
-const CommentsContent = memo(({ commentsData }) => {
+const CommentsContent = ({ commentsData }) => {
   return (
     <div className='pt-2'>
       {commentsData &&
@@ -17,6 +15,6 @@ const CommentsContent = memo(({ commentsData }) => {
         ))}
     </div>
   )
-})
+}
 
 export default CommentsContent

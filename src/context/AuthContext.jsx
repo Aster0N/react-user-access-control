@@ -5,27 +5,27 @@ export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(true)
   const [roles, setRoles] = useState(['admin', 'user-manager', 'gallery-manager', 'todos-manager'])
   const [user, setUser] = useState({
-    "id": 5,
-    "name": "Chelsey Dietrich",
-    "username": "Kamren",
-    "email": "Lucio_Hettinger@annie.ca",
-    "role": ["user-manager", "gallery-manager"],
+    "id": 1,
+    "name": "Boss",
+    "role": ["admin"],
+    "username": "Bret",
+    "email": "Sincere@april.biz",
     "address": {
-      "street": "Skiles Walks",
-      "suite": "Suite 351",
-      "city": "Roscoeview",
-      "zipcode": "33263",
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
       "geo": {
-        "lat": "-31.8129",
-        "lng": "62.5342"
+        "lat": "-37.3159",
+        "lng": "81.1496"
       }
     },
-    "phone": "(254)954-1289",
-    "website": "demarco.info",
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
     "company": {
-      "name": "Keebler LLC",
-      "catchPhrase": "User-centric fault-tolerant solution",
-      "bs": "revolutionize end-to-end systems"
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
     }
   })
 

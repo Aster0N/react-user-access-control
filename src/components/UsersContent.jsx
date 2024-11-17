@@ -1,7 +1,8 @@
-import { memo, useContext } from 'react'
-import AuthContext from '../context/AuthContext'
+import UserActions from '@/components/UserActions'
+import AuthContext from '@/context/AuthContext'
+import { useContext } from 'react'
 
-const UsersContent = memo(({ usersData }) => {
+const UsersContent = ({ usersData }) => {
   const { user } = useContext(AuthContext)
 
   return (
@@ -13,27 +14,31 @@ const UsersContent = memo(({ usersData }) => {
             className={`
 							p-4 rounded-md border-solid border-[1px] border-[#535bf2] mb-3
 							${user.id == userData.id ? 'bg-slate-800' : 'bg-transparent'}
+							flex justify-between place-items-center
 						`}
           >
-            <div className='flex gap-2 text-green-200'>
-              <h2>{userData.id}.</h2>
-              <span>{userData.name}</span>
-              {userData.role.map((role) => (
-                <span
-                  key={role}
-                  className='text-orange-500'
-                >
-                  {role}&nbsp;
-                </span>
-              ))}
+            <div className='user-content'>
+              <div className='flex gap-2 text-green-200'>
+                <h2>{userData.id}.</h2>
+                <span>{userData.name}</span>
+                {userData.role.map((role) => (
+                  <span
+                    key={role}
+                    className='text-orange-500'
+                  >
+                    {role}&nbsp;
+                  </span>
+                ))}
+              </div>
+              <p>{userData.email}</p>
             </div>
-            <div>
-              {userData.email} <span className='text-green-200'>/</span> {userData.username}
-            </div>
+            {user.role == 'admin' && userData.role != 'admin' && (
+              <UserActions userData={userData} />
+            )}
           </div>
         ))}
     </div>
   )
-})
+}
 
 export default UsersContent
