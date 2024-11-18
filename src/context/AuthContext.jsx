@@ -1,9 +1,10 @@
-import { createContext, useState } from 'react'
+import { userRoles } from '@/consts/userRoles'
+import { createContext, useEffect, useState } from 'react'
 const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(true)
-  const [roles, setRoles] = useState(['admin', 'user-manager', 'gallery-manager', 'todos-manager'])
+  const [roles, setRoles] = useState(null)
   const [user, setUser] = useState({
     "id": 1,
     "name": "Boss",
@@ -28,6 +29,10 @@ export const AuthProvider = ({ children }) => {
       "bs": "harness real-time e-markets"
     }
   })
+
+	useEffect(() => {
+		setRoles(Object.values(userRoles))
+	}, [])
 
   return (
     <AuthContext.Provider

@@ -1,5 +1,6 @@
 import { USERS_DATA_URL } from '@/api/api'
 import UsersContent from '@/components/UsersContent'
+import { userRoles } from '@/consts/userRoles'
 import AuthContext from '@/context/AuthContext'
 import { useContext, useEffect, useState } from 'react'
 
@@ -22,7 +23,7 @@ const UserProfile = () => {
 
   return (
     <>
-      {user.role == 'admin' ? (
+      {user.role == userRoles.ROLE_ADMIN ? (
         <div>
           <h1 className='pt-20 mb-10'>Users to manage</h1>
           <UsersContent usersData={usersData} />

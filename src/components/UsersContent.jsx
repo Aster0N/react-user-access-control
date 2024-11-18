@@ -1,4 +1,5 @@
 import UserActions from '@/components/UserActions'
+import { userRoles } from '@/consts/userRoles'
 import AuthContext from '@/context/AuthContext'
 import { useContext } from 'react'
 
@@ -32,7 +33,7 @@ const UsersContent = ({ usersData }) => {
               </div>
               <p>{userData.email}</p>
             </div>
-            {user.role == 'admin' && userData.role != 'admin' && (
+            {user.role == userRoles.ROLE_ADMIN && userData.role != userRoles.ROLE_ADMIN && (
               <UserActions userData={userData} />
             )}
           </div>
