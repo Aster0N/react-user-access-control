@@ -1,11 +1,33 @@
-import { useState } from 'react'
+import { userRoles } from '@/consts/userRoles'
+import { useEffect, useState } from 'react'
 
 const UserActions = ({ userData }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [currentUserRoles, setCurrentUserRoles] = useState(null)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
+
+  const handleUserRoleChange = (changedRole) => {
+    setCurrentUserRoles((prevRoles) => ({
+      ...prevRoles,
+      [changedRole]: !prevRoles[changedRole],
+    }))
+    // create context of users => change it (mb users = {user.id: userData} to access user by id)
+  }
+
+  useEffect(() => {
+    console.table(currentUserRoles)
+  }, [currentUserRoles])
+
+  useEffect(() => {
+    let currentRoles = {}
+    Object.values(userRoles).map((availableRole) => {
+      currentRoles[availableRole] = userData.role.includes(availableRole)
+    })
+    setCurrentUserRoles(currentRoles)
+  }, [])
 
   return (
     <div className='relative inline-block text-left'>
@@ -35,14 +57,16 @@ const UserActions = ({ userData }) => {
       {isOpen && (
         <div className='absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10'>
           <div className='py-2 px-4 space-y-2'>
-            {userData.role.map((role) => (
+            {Object.entries(currentUserRoles)?.map(([role, isChecked]) => (
               <label
                 key={role}
                 className='flex items-center space-x-2 text-sm text-gray-300 cursor-pointer'
               >
                 <input
                   type='checkbox'
+                  defaultChecked={isChecked}
                   className='form-checkbox h-4 w-4'
+                  onChange={() => handleUserRoleChange(role)}
                 />
                 <span>{role}</span>
               </label>
