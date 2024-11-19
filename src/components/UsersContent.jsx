@@ -2,9 +2,14 @@ import UserActions from '@/components/UserActions'
 import { userRoles } from '@/consts/userRoles'
 import AuthContext from '@/context/AuthContext'
 import { useContext } from 'react'
+import switchArrowsImg from '/switchArrowsImg.svg'
 
 const UsersContent = () => {
-  const { user, users } = useContext(AuthContext)
+  const { user, setUser, users } = useContext(AuthContext)
+
+  const switchUser = (userId) => {
+    setUser(users[userId])
+  }
 
   return (
     <div className='pt-2'>
@@ -33,9 +38,23 @@ const UsersContent = () => {
               </div>
               <p>{userData.email}</p>
             </div>
-            {user.role == userRoles.ROLE_ADMIN && userData.role != userRoles.ROLE_ADMIN && (
-              <UserActions userData={userData} />
-            )}
+            <div className='flex place-items-center gap-5'>
+              {user.id != userId && (
+                <button
+                  className='w-15 h-15 p-4'
+                  onClick={() => switchUser(userId)}
+                >
+                  <img
+                    src={switchArrowsImg}
+                    alt='switch user'
+                  />
+                </button>
+              )}
+              {user.role.includes(userRoles.ROLE_ADMIN) &&
+                !userData.role.includes(userRoles.ROLE_ADMIN) && (
+                  <UserActions userData={userData} />
+                )}
+            </div>
           </div>
         ))}
     </div>

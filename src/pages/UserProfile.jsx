@@ -8,14 +8,13 @@ const UserProfile = () => {
 
   return (
     <>
-      {user.role == userRoles.ROLE_ADMIN ? (
-        <div>
-          <h1 className='pt-20 mb-10'>Users to manage</h1>
-          <UsersContent />
-        </div>
-      ) : (
+      <div>
         <h1 className='pt-20'>Hello, {user.name}</h1>
-      )}
+        {user.role != userRoles.ROLE_ADMIN && (
+          <p className='underline'>Click on a user to switch to another account</p>
+        )}
+        <UsersContent />
+      </div>
     </>
   )
 }

@@ -13,7 +13,7 @@ const Users = () => {
 
   const tabData = {
     users: {
-      element: () => <UsersContent/>,
+      element: () => <UsersContent />,
     },
     posts: {
       getURL: POSTS_URL,
