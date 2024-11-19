@@ -1,3 +1,4 @@
+import { USERS_DATA_URL } from '@/api/api'
 import { userRoles } from '@/consts/userRoles'
 import { createContext, useEffect, useState } from 'react'
 const AuthContext = createContext(null)
@@ -5,38 +6,37 @@ const AuthContext = createContext(null)
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(true)
   const [roles, setRoles] = useState(null)
-  const [user, setUser] = useState({
-    "id": 1,
-    "name": "Boss",
-    "role": ["admin"],
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "address": {
-      "street": "Kulas Light",
-      "suite": "Apt. 556",
-      "city": "Gwenborough",
-      "zipcode": "92998-3874",
-      "geo": {
-        "lat": "-37.3159",
-        "lng": "81.1496"
-      }
-    },
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org",
-    "company": {
-      "name": "Romaguera-Crona",
-      "catchPhrase": "Multi-layered client-server neural-net",
-      "bs": "harness real-time e-markets"
-    }
-  })
+  const [users, setUsers] = useState(null)
+  const [user, setUser] = useState(null)
 
-	useEffect(() => {
-		setRoles(Object.values(userRoles))
-	}, [])
+  const loadUsers = async () => {
+    try {
+      let response = await fetch(USERS_DATA_URL).then((response) => response.json())
+      const usersById = response.reduce((acc, user) => {
+        acc[user.id] = user
+        return acc
+      }, {})
+      setUsers(usersById)
+
+      if (!user) {
+        setUser(usersById[1])
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    setRoles(Object.values(userRoles))
+    if (users) return
+    loadUsers()
+  }, [])
 
   return (
     <AuthContext.Provider
       value={{
+        users,
+        setUsers,
         user,
         setUser,
         roles,

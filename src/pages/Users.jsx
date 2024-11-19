@@ -1,4 +1,4 @@
-import { COMMENTS_URL, POSTS_URL, USERS_DATA_URL } from '@/api/api.js'
+import { COMMENTS_URL, POSTS_URL } from '@/api/api.js'
 import CommentsContent from '@/components/CommentsContent'
 import PostsContent from '@/components/PostsContent'
 import TabContentWarning from '@/components/UI/TabContentWarning'
@@ -8,16 +8,12 @@ import { useEffect, useState } from 'react'
 
 const Users = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(null)
-  const [usersData, setUsersData] = useState(null)
   const [postsData, setPostsData] = useState(null)
   const [commentsData, setCommentsData] = useState(null)
 
   const tabData = {
     users: {
-      getURL: USERS_DATA_URL,
-      setData: setUsersData,
-      data: usersData,
-      element: () => <UsersContent usersData={usersData} />,
+      element: () => <UsersContent/>,
     },
     posts: {
       getURL: POSTS_URL,
@@ -46,6 +42,7 @@ const Users = () => {
   useEffect(() => {
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
+      if (currentTabData.data || tabs[activeTabIndex] == 'users') return
       handleTabChange(currentTabData)
     }
   }, [activeTabIndex])

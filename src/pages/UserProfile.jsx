@@ -1,32 +1,17 @@
-import { USERS_DATA_URL } from '@/api/api'
 import UsersContent from '@/components/UsersContent'
 import { userRoles } from '@/consts/userRoles'
 import AuthContext from '@/context/AuthContext'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 const UserProfile = () => {
-  const [usersData, setUsersData] = useState(null)
   const { user } = useContext(AuthContext)
-
-  const loadUsers = async () => {
-    try {
-      let response = await fetch(USERS_DATA_URL).then((response) => response.json())
-      setUsersData(response)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  useEffect(() => {
-    loadUsers()
-  }, [])
 
   return (
     <>
       {user.role == userRoles.ROLE_ADMIN ? (
         <div>
           <h1 className='pt-20 mb-10'>Users to manage</h1>
-          <UsersContent usersData={usersData} />
+          <UsersContent />
         </div>
       ) : (
         <h1 className='pt-20'>Hello, {user.name}</h1>

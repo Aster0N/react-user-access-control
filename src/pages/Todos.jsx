@@ -44,7 +44,7 @@ const Todos = () => {
   useEffect(() => {
     if (activeTabIndex !== null) {
       const currentTabData = tabData[tabs[activeTabIndex]]
-      if (currentTabData.data || tabs[activeTabIndex] == 'random photo') return
+      if (currentTabData.data) return
       handleTabChange(currentTabData)
     }
   }, [activeTabIndex])

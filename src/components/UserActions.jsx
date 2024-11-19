@@ -1,12 +1,25 @@
 import { userRoles } from '@/consts/userRoles'
-import { useEffect, useState } from 'react'
+import AuthContext from '@/context/AuthContext'
+import { useContext, useEffect, useState } from 'react'
 
 const UserActions = ({ userData }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [currentUserRoles, setCurrentUserRoles] = useState(null)
+  const { setUsers } = useContext(AuthContext)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
+  }
+
+  const updateUserRoles = () => {
+    const newRoles = Object.entries(currentUserRoles)
+      .filter(([_, value]) => value)
+      .map(([key]) => key)
+
+    setUsers((prevUsers) => ({
+      ...prevUsers,
+      [userData.id]: { ...prevUsers[userData.id], role: newRoles },
+    }))
   }
 
   const handleUserRoleChange = (changedRole) => {
@@ -14,14 +27,15 @@ const UserActions = ({ userData }) => {
       ...prevRoles,
       [changedRole]: !prevRoles[changedRole],
     }))
-    // create context of users => change it (mb users = {user.id: userData} to access user by id)
   }
 
   useEffect(() => {
-    console.table(currentUserRoles)
+    if (!currentUserRoles) return
+    updateUserRoles()
   }, [currentUserRoles])
 
   useEffect(() => {
+    if (currentUserRoles) return
     let currentRoles = {}
     Object.values(userRoles).map((availableRole) => {
       currentRoles[availableRole] = userData.role.includes(availableRole)
@@ -39,7 +53,7 @@ const UserActions = ({ userData }) => {
           className={`
 							w-3 h-3 text-gray-800 dark:text-white
 							transition-transform duration-200 
-							${isOpen ? '-rotate-90' : 'rotate-0'}`}
+							${isOpen ? 'rotate-0' : '-rotate-90'}`}
           aria-hidden='true'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -64,7 +78,7 @@ const UserActions = ({ userData }) => {
               >
                 <input
                   type='checkbox'
-                  defaultChecked={isChecked}
+                  checked={isChecked}
                   className='form-checkbox h-4 w-4'
                   onChange={() => handleUserRoleChange(role)}
                 />

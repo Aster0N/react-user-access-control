@@ -6,6 +6,8 @@ import { useContext } from 'react'
 export function getUserLinksByRole(getOnlySectionLinks = true) {
   const { user } = useContext(AuthContext)
 
+  if (!user) return
+
   let userLinks = []
   user.role.forEach((role) => userLinks.push(...userRouteByRole[role]))
 

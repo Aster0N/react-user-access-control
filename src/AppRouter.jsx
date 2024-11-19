@@ -10,7 +10,7 @@ const AppRouter = () => {
 
   return isAuth ? (
     <Routes>
-      {allUserRoutes.map((route) => (
+      {allUserRoutes?.map((route) => (
         <Route
           key={route.path}
           path={route.path}

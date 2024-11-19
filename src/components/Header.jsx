@@ -11,7 +11,7 @@ const Header = () => {
       <div className='w-[70vw] mx-auto flex place-content-between'>
         <Link to={MAIN_PATH}>Home</Link>
         <div className='flex gap-5'>
-          {userAccessibleLinks.map((link) => (
+          {userAccessibleLinks?.map((link) => (
             <span key={link.path}>
               <Link to={link.path}>{link.placeholder}</Link>
             </span>
